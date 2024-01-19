@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import { Tweet, TweetSchema } from "./tweet.entity";
 
 describe("Tweet Tests", () => {
@@ -20,23 +20,13 @@ describe("Tweet Tests", () => {
     let conn: mongoose.Mongoose;
 
     beforeEach(async () => {
-      try {
-        conn = await mongoose.connect(
-          `mongodb://root:root@localhost:27017/tweets_entity_test?authSource=admin`,
-        );
-      } catch (error) {
-        console.error("Error establishing MongoDB connection:", error);
-      }
+      conn = await mongoose.connect(
+        `mongodb://root:root@localhost:27017/tweets_entity_test?authSource=admin`,
+      );
     });
 
     afterEach(async () => {
-      try {
-        if (conn) {
-          await conn.disconnect();
-        }
-      } catch (error) {
-        console.error("Error disconnecting from MongoDB:", error);
-      }
+      await conn.disconnect();
     });
 
     it("create a tweet document", async () => {
