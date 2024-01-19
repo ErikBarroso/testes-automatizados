@@ -7,11 +7,11 @@ describe("Tweet Tests", () => {
     it("should create a tweet", () => {
       const tweet = new Tweet({
         content: "Hello World",
-        screen_name: "Luiz Carlos",
+        screen_name: "DevErik",
       });
 
       expect(tweet.content).toBe("Hello World");
-      expect(tweet.screen_name).toBe("Luiz Carlos");
+      expect(tweet.screen_name).toBe("DevErik");
     });
   });
 
@@ -43,14 +43,14 @@ describe("Tweet Tests", () => {
       const TweetModel = conn.model("Tweet", TweetSchema);
       const tweet = new TweetModel({
         content: "Hello World",
-        screen_name: "Luiz Carlos",
+        screen_name: "DevErik",
       });
       await tweet.save();
 
       const tweetCreated = await TweetModel.findById(tweet._id);
 
       expect(tweetCreated.content).toBe("Hello World");
-      expect(tweetCreated.screen_name).toBe("Luiz Carlos");
+      expect(tweetCreated.screen_name).toBe("DevErik");
     });
   });
 });
